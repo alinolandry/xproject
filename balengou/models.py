@@ -6,7 +6,7 @@ class Team(models.Model):
     """
     Une équipe scrum est un ensemble de personnes qui travaillent sur un projet
     """
-    member = models.ManyToManyField(User)
+    members = models.ManyToManyField(User)
     name = models.CharField(max_length=150)
 
     def __str__(self):
