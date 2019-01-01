@@ -10,7 +10,12 @@ class Team(models.Model):
     name = models.CharField(max_length=150)
 
     def __str__(self):
-        return "Team"
+        return self.name
+    
+    class Meta:
+        verbose_name = "Equipe"
+        verbose_name_plural = "Equipes"
+
 
 class Project(models.Model):
     """
@@ -20,6 +25,14 @@ class Project(models.Model):
     team = models.ForeignKey(Team)
     name = models.CharField(max_length=150)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Project"
+        verbose_name_plural = "Projects"
+
+
 class ProductBacklog(models.Model):
     """
     Un backlog produit Scrum contient un ensemble de user storie
@@ -27,6 +40,13 @@ class ProductBacklog(models.Model):
     """
     team = models.ForeignKey(Team)
     name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Backlog de Produit"
+        verbose_name_plural = "Backlog des produits"
 
 class Sprint(models.Model):
     """
@@ -37,6 +57,14 @@ class Sprint(models.Model):
     begin_date = models.DateField()
     end_date = models.DateField()
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Itération"
+        verbose_name_plural = "Itérations"
+
+
 class UserStory(models.Model):
     """
     Une user story est une demande client
@@ -44,3 +72,10 @@ class UserStory(models.Model):
     product_backlog = models.ForeignKey(ProductBacklog)
     name = models.CharField(max_length=255)
     description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Demande client"
+        verbose_name_plural = "Demandes client"
