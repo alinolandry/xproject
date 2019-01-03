@@ -150,7 +150,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'xproject', 'static'),
 )
 
-
+GRAPPELLI_ADMIN_TITLE = "XPROJECT"
 
 # Django Allauth coonfiguration
 SITE_ID = 1
