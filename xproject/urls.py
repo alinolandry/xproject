@@ -18,5 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('allauth.urls')), #Url of django-allauth
     url(r'^', include('balengou.urls', namespace="balengou")),
 ]
