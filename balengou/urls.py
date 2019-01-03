@@ -1,4 +1,4 @@
-"""xproject URL Configuration
+"""Balengou App URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
+from . import views 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('balengou.urls', namespace="balengou")),
+    url(r'^dashboard/$', views.dashboard, name="dashboard"),
+    url(r"^backlog/(?P<backlog_id>[0-9]+)/$", views.backlog, name="backlog"),
+    
 ]

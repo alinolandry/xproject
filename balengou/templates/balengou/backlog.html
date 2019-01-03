@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Backlog {{ backlog.name }}
+{% endblock title %}
+
+
+{% block body %}
+     <h1> {{ backlog.name }} </h1>
+
+     <ul>
+         {% for story in stories %}
+             <li> {{ story.name }} </li>
+         {% endfor %}
+     </ul>
+     <a href="{% url 'balengou:dashboard' %}" title="Retour"> Retour sur le dashboard </a>
+{% endblock body %}
+     
+    

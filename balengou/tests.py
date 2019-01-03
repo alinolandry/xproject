@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
-from balengou.models import *
+from .models import *
 # Create your tests here.
 
 class BalengouTest(TestCase):
