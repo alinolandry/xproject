@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.test import Client
 from django.core.urlresolvers import reverse
 
 from .models import *
@@ -33,11 +34,13 @@ class BalengouTest(TestCase):
     def test_dashboard_not_authenticated_user(self):
         # Test case qui nous rassure que l'utilisateur ne sera pas à dasboard s'il n'est as authentifié
         url = reverse("balengou:dashboard")
+        self.client = Client()
         response = self.client.get(url)
         self.assertTemplateNotUsed(response, "balengou/dashboard.html")
         self.failUnlessEqual(response.status_code, 302)
 
     def test_dashboard_authenticated_user(self):
+        self.client = Client()
         # Test de l'afficharge du dasboard quand l'utilisateur est bien connecté
         self.client.login(username="pascal", password="pascal@balengou.com")
         response = self.client.get(reverse('balengou:dashboard'))
@@ -50,11 +53,13 @@ class BalengouTest(TestCase):
         self.client.logout() 
 
     def test_backlog_not_authenticated_user(self):
+        self.client = Client()
         response = self.client.get(reverse('balengou:backlog', kwargs={'backlog_id':1}))
         self.assertTemplateNotUsed(response, 'balengou/backlog.html')
         self.failUnlessEqual(response.status_code, 302)
     
     def test_backlog_authentificated_user(self):
+        self.client = Client()
         self.client.login(username="pascal", password="pascal@balengou.com")
         response = self.client.get(reverse('balengou:backlog', kwargs={'backlog_id':1})) # L'id 1 correspond au backlog de fo_backlog
         self.assertEqual(response.context['backlog'], self.fo_backlog)
