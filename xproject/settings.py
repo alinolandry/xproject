@@ -40,6 +40,7 @@ AUTHENTICATION_BACKENDS = (
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',#ajouter grappeli avant django.contrib.admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    
+
     #allauth app to manage authentifcation
     'allauth',
     'allauth.account',
@@ -72,7 +73,7 @@ ROOT_URLCONF = 'xproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'xproject','templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,6 +137,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+
+MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
+STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+
+STATIC_DIRS = os.path.join(BASE_DIR, 'xproject', 'static')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'xproject', 'static'),
+)
+
+
 
 # Django Allauth coonfiguration
 SITE_ID = 1
+
